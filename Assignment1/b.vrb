@@ -12,7 +12,7 @@ lt_precalculated3 = (1/S)**4
 
 plt.plot(S, lt_precalculated1, label = 's-transform of f(t) = t')
 plt.plot(S, lt_precalculated2, label = 's-transform of f(t) = t^2/2')
-plt.plot(S, lt_precalculated3, label = 's-transform of f(t) = t^3/3')
+plt.plot(S, lt_precalculated3, label = 's-transform of f(t) = t^3/6')
 plt.xlim(0, 4)
 plt.ylim(0, 4)
 plt.legend()

@@ -186,7 +186,7 @@ for i in range(0, n):
   lt_3[i],_ = integrate.quad(integrand, 0, np.inf, args=(S[i], 3))
 plt.plot(S, lt_1, label = 's-transform of f(t) = t -> F(s) = 1/s^2')
 plt.plot(S, lt_2, label = 's-transform of f(t) = t^2/2 -> F(s) = 1/s^3')
-plt.plot(S, lt_3, label = 's-transform of f(t) = t^3/3 -> F(s) = 1/s^4')
+plt.plot(S, lt_3, label = 's-transform of f(t) = t^3/6 -> F(s) = 1/s^4')
 plt.xlim(0, 4)
 plt.ylim(0, 4)
 plt.legend()
@@ -217,7 +217,7 @@ lt_precalculated3 = (1/S)**4
 
 plt.plot(S, lt_precalculated1, label = 's-transform of f(t) = t')
 plt.plot(S, lt_precalculated2, label = 's-transform of f(t) = t^2/2')
-plt.plot(S, lt_precalculated3, label = 's-transform of f(t) = t^3/3')
+plt.plot(S, lt_precalculated3, label = 's-transform of f(t) = t^3/6')
 plt.xlim(0, 4)
 plt.ylim(0, 4)
 plt.legend()

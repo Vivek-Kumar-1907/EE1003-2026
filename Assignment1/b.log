@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.8.2)  27 MAR 2026 18:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.8.2)  27 MAR 2026 18:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1546,14 +1546,17 @@ LaTeX Font Info:    Trying to load font information for OT1+lmss on input line
 84.
 (/usr/share/texmf/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) (./b.aux
+
+LaTeX Warning: Label `fig:output' multiply defined.
+
 )
-No file b.aux.
 \openout1 = `b.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 84.
 LaTeX Font Info:    Trying to load font information for OML+txmi on input line 
 84.
-(/usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxmi.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    ... okay on input line 84.
@@ -1649,6 +1652,8 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package hyperref Info: Link coloring OFF on input line 84.
+
+(./b.out) (./b.out)
 \@outlinefile=\write7
 \openout7 = `b.out'.
 
@@ -1724,15 +1729,14 @@ ry-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
 \c@lstlisting=\count416
-
-No file b.nav.
-[1
+ (./b.nav) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/lm/lm-rm.enc}]
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
 7.
- (/usr/share/texmf/tex/latex/lm/omllmm.fd
+
+(/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
@@ -1796,11 +1800,7 @@ dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}] [3
 
 ] [4
 
-]
-
-LaTeX Warning: Reference `eq:1' on page 5 undefined on input line 134.
-
-[5
+] [5
 
 ]
 \openout4 = `b.vrb'.
@@ -1819,7 +1819,7 @@ File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 
 ]
-<beamer/figs/plot-1.png, id=234, 414.1071pt x 328.8285pt>
+<beamer/figs/plot-1.png, id=236, 414.1071pt x 328.8285pt>
 File: beamer/figs/plot-1.png Graphic file (type png)
 <use beamer/figs/plot-1.png>
 Package pdftex.def Info: beamer/figs/plot-1.png  used on input line 169.
@@ -1865,7 +1865,7 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}]
-<beamer/figs/plot-2.png, id=323, 417.7206pt x 328.8285pt>
+<beamer/figs/plot-2.png, id=325, 417.7206pt x 328.8285pt>
 File: beamer/figs/plot-2.png Graphic file (type png)
 <use beamer/figs/plot-2.png>
 Package pdftex.def Info: beamer/figs/plot-2.png  used on input line 205.
@@ -1885,7 +1885,7 @@ Overfull \vbox (25.54002pt too high) detected at line 205
 
 
 ]
-<beamer/figs/plot-3.png, id=409, 417.7206pt x 328.8285pt>
+<beamer/figs/plot-3.png, id=410, 417.7206pt x 328.8285pt>
 File: beamer/figs/plot-3.png Graphic file (type png)
 <use beamer/figs/plot-3.png>
 Package pdftex.def Info: beamer/figs/plot-3.png  used on input line 237.
@@ -1919,25 +1919,16 @@ L3 programming layer <2020/03/25>
  ***********
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: There were multiply-defined labels.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `b.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `b.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
+Package rerunfilecheck Info: File `b.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 57757 strings out of 474222
- 1371417 string characters out of 5748734
+ 57801 strings out of 474222
+ 1371774 string characters out of 5748734
  2438256 words of memory out of 5000000
- 78982 multiletter control sequences out of 15000+600000
+ 79018 multiletter control sequences out of 15000+600000
  625765 words of font info for 116 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  128i,15n,123p,1176b,1608s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1950,7 +1941,7 @@ c/lm/lmsso10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso12.pfb></usr/shar
 e/texmf/fonts/type1/public/lm/lmsso8.pfb></usr/share/texmf/fonts/type1/public/l
 m/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texm
 f/fonts/type1/public/lm/lmtt10.pfb>
-Output written on b.pdf (14 pages, 316388 bytes).
+Output written on b.pdf (14 pages, 316254 bytes).
 PDF statistics:
  509 PDF objects out of 1000 (max. 8388607)
  427 compressed objects within 5 object streams
