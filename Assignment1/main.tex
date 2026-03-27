@@ -1,0 +1,90 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} 
+\usepackage{tfrupee} 
+\setlength{\headheight}{1cm}
+\setlength{\headsep}{0mm}   
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}  
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{xparse}
+
+\bibliographystyle{IEEEtran}
+
+\title{1.1.62}
+\author{EE25BTECH11062 - Vivek K Kumar}
+
+\begin{document}
+\maketitle
+
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+
+\numberwithin{equation}{enumi}
+\numberwithin{figure}{enumi} 
+
+\textbf{Question}:\\
+If F(s) is the Laplace transform of function f(t), then Laplace transform of $\int\limits_0^t f(\tau) d\tau$ is
+\begin{enumerate}
+    \item $-F(s)$
+    \item $-F(s) - f(0)$
+    \item $\frac{1}{s}F(s)$
+    \item $\int F(s)ds$
+\end{enumerate}
+\textbf{Solution: }
+\begin{align}
+\mathscr{L}\{f(t)\} = F(s) = \int_0^{\infty}f(t)e^{-st}dt \\
+\end{align}
+Let, 
+\begin{align}
+    g(t) &= \int\limits_0^tf(\tau)d\tau \label{eq:1} \\
+    \mathscr{L}\{g'(t)\} &= \int\limits_0^\infty g'(t)e^{-st}dt \\
+    &= g(t)e^{-st} \bigg|_{0}^{\infty} - \int\limits_0^\infty g(t)\frac{d}{dt}(e^{-st})dt \\
+    &= (0 - g(0)) + s\int\limits_0^\infty g(t)e^{-st}dt \\
+    g(0) &= \int\limits_0^0f(\tau)d\tau
+         = 0\\
+    \implies \mathscr{L}\{g'(t)\} &= \frac{1}{s} \mathscr{L}\{g(t)\} \\
+    \mathscr{L}\{g(t)\} &= \frac{1}{s}\mathscr{L}\{g'(t)\}
+\end{align}
+Applying fundamental theorem of calculus to \eqref{eq:1},
+\begin{align}
+    \frac{d}{dt}g(t) = f(t)
+\end{align}
+
+So we finally end up with
+\begin{align}
+    \mathscr{L}\cbrak{\int\limits_0^tf(\tau)d\tau} = \frac{1}{s}\mathscr{L}\{f(t)\} = \frac{F(s)}{s}
+\end{align}
+\begin{center}
+$\boxed{\textbf{Option C is the right answer}}$
+\end{center}
+
+\end{document}  
+

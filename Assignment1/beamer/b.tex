@@ -1,0 +1,239 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+  breakable=true,
+  listing engine=minted,
+  listing only,
+  minted language=#2,
+  minted style=default,
+  minted options={%
+    linenos,
+    gobble=0,
+    breaklines=true,
+    breakafter=,,
+    fontsize=\small,
+    numbersep=8pt,
+    #1},
+  boxsep=0pt,
+  left skip=0pt,
+  right skip=0pt,
+  left=25pt,
+  right=0pt,
+  top=3pt,
+  bottom=3pt,
+  arc=5pt,
+  leftrule=0pt,
+  rightrule=0pt,
+  bottomrule=2pt,
+  toprule=2pt,
+  colback=bg,
+  colframe=orange!70,
+  enhanced,
+  overlay={%
+    \begin{tcbclipinterior}
+    \fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+    \end{tcbclipinterior}},
+  #3,
+}
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{green!60!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    showstringspaces=false
+}
+
+\title 
+{1.1.62}
+\date{\today}
+
+
+\author 
+{Vivek K Kumar - EE25BTECH11062}
+
+
+
+\begin{document}
+
+
+\frame{\titlepage}
+
+\begin{frame}{Question}
+If F(s) is the Laplace transform of function f(t), then Laplace transform of $\int\limits_0^t f(\tau) d\tau$ is
+\begin{enumerate}
+    \item $-F(s)$
+    \item $-F(s) - f(0)$
+    \item $\frac{1}{s}F(s)$
+    \item $\int F(s)ds$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Solution}
+\begin{align}
+\mathcal{L}\{f(t)\} = F(s) = \int_0^{\infty}f(t)e^{-st}dt
+\end{align}
+Let, 
+\begin{align}
+    g(t) &= \int\limits_0^tf(\tau)d\tau \label{eq:1} \\
+    \mathcal{L}\{g'(t)\} &= \int\limits_0^\infty g'(t)e^{-st}dt \\
+    &= g(t)e^{-st} \bigg|_{0}^{\infty} - \int\limits_0^\infty g(t)\frac{d}{dt}(e^{-st})dt 
+\end{align}
+\end{frame}
+
+\begin{frame}{Solution}
+\begin{align}
+    &= (0 - g(0)) + s\int\limits_0^\infty g(t)e^{-st}dt \\
+    g(0) &= \int\limits_0^0f(\tau)d\tau
+         = 0\\
+    \implies \mathcal{L}\{g'(t)\} &= \frac{1}{s} \mathcal{L}\{g(t)\} \\
+    \mathcal{L}\{g(t)\} &= \frac{1}{s}\mathcal{L}\{g'(t)\}
+\end{align}
+\end{frame}
+
+\begin{frame}{Solution}
+Applying fundamental theorem of calculus to \eqref{eq:1},
+\begin{align}
+    \frac{d}{dt}g(t) = f(t)
+\end{align}
+
+So we finally end up with
+\begin{align}
+    \mathcal{L}\cbrak{\int\limits_0^tf(\tau)d\tau} = \frac{1}{s}\mathcal{L}\{f(t)\} = \frac{F(s)}{s}
+\end{align}
+\begin{center}
+$\boxed{\textbf{Option C is the right answer}}$
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Python Code - Plotting time-domain signals (successively integrated)}
+\begin{lstlisting}[language=Python]
+from matplotlib import legend
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import integrate
+
+x = np.linspace(0, 1000, num=100000)
+y0 = np.ones(100000)
+
+y1 = integrate.cumulative_simpson(y0, x=x, initial = 0)
+y2 = integrate.cumulative_simpson(y1, x=x, initial = 0)
+y3 = integrate.cumulative_simpson(y2, x=x, initial = 0)
+
+plt.plot(x, y1, label = "x1=t")
+plt.plot(x, y2, label = "x2=t^2/2")
+plt.plot(x, y3, label = "x3=t^3/6")
+plt.legend()
+
+plt.xlabel("t-axis")
+plt.xlim(0,4)
+plt.ylabel("x-axis")
+plt.ylim(0,10)
+plt.title("Plot for integrals of x=t")
+\end{lstlisting}
+\end{frame}
+\begin{frame}{Plot for input time-domain signals $f(t) =t, f(t) = t^2/2, f(t) = t^3/6$}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{beamer/figs/plot-1.png}
+        \caption{Plot for input time-domain signals $f(t) =t, f(t) = t^2/2, f(t) = t^3/6$}
+        \label{fig:input}
+    \end{figure}
+\end{frame}
+\begin{frame}[fragile, allowframebreaks]{Python Code - Computing and plotting laplace transform of given signals}
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import integrate
+import math
+def integrand(t, s, a):
+  return (t**a)*np.pow(np.e, -s*t)/math.factorial(a)
+n = 100
+S = np.linspace(0, 10, num = n)
+lt_1 = np.zeros(n)
+lt_2 = np.zeros(n)
+lt_3 = np.zeros(n)
+for i in range(0, n):
+  lt_1[i],_ = integrate.quad(integrand, 0, np.inf, args=(S[i], 1))
+  lt_2[i],_ = integrate.quad(integrand, 0, np.inf, args=(S[i], 2))
+  lt_3[i],_ = integrate.quad(integrand, 0, np.inf, args=(S[i], 3))
+plt.plot(S, lt_1, label = 's-transform of f(t) = t -> F(s) = 1/s^2')
+plt.plot(S, lt_2, label = 's-transform of f(t) = t^2/2 -> F(s) = 1/s^3')
+plt.plot(S, lt_3, label = 's-transform of f(t) = t^3/3 -> F(s) = 1/s^4')
+plt.xlim(0, 4)
+plt.ylim(0, 4)
+plt.legend()
+plt.xlabel('s-axis')
+plt.ylabel('F(s)')
+plt.title('Plot after computing laplace transform')
+\end{lstlisting}
+\end{frame}
+\begin{frame}{Plot for computed s-domain signals: $\frac{1}{s^2}, \frac{1}{s^3}, \frac{1}{s^4}$}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{beamer/figs/plot-2.png}
+        \caption{Plot for output s-domain signals: $\frac{1}{s^2}, \frac{1}{s^3}, \frac{1}{s^4}$}
+        \label{fig:output}
+    \end{figure}
+\end{frame}
+\begin{frame}[fragile, allowframebreaks]{Python Code - Plotting $1/s$, $1/s^2$, $1/s^3$ (without perfoming laplace transform)}
+    \begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import integrate
+
+n = 100
+S = np.linspace(0, 10, num = n)
+lt_precalculated1 = (1/S)**2
+lt_precalculated2 = (1/S)**3
+lt_precalculated3 = (1/S)**4
+
+plt.plot(S, lt_precalculated1, label = 's-transform of f(t) = t')
+plt.plot(S, lt_precalculated2, label = 's-transform of f(t) = t^2/2')
+plt.plot(S, lt_precalculated3, label = 's-transform of f(t) = t^3/3')
+plt.xlim(0, 4)
+plt.ylim(0, 4)
+plt.legend()
+plt.xlabel('s-axis')
+plt.ylabel('F(s)')
+plt.title('Plot(precomputed laplace transform)')
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Plot for: $\frac{1}{s^2}, \frac{1}{s^3}, \frac{1}{s^4}$ (direct plot)}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{beamer/figs/plot-3.png}
+        \caption{Plot for output s-domain signals: $\frac{1}{s^2}, \frac{1}{s^3}, \frac{1}{s^4}$}
+        \label{fig:output}
+    \end{figure}
+\end{frame}
+
+\end{document}

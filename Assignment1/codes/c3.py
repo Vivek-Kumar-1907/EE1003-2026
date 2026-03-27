@@ -1,0 +1,19 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import integrate
+
+n = 100
+S = np.linspace(0, 10, num = n)
+lt_precalculated1 = (1/S)**2
+lt_precalculated2 = (1/S)**3
+lt_precalculated3 = (1/S)**4
+
+plt.plot(S, lt_precalculated1, label = 's-transform of f(t) = t')
+plt.plot(S, lt_precalculated2, label = 's-transform of f(t) = t^2/2')
+plt.plot(S, lt_precalculated3, label = 's-transform of f(t) = t^3/3')
+plt.xlim(0, 4)
+plt.ylim(0, 4)
+plt.legend()
+plt.xlabel('s-axis')
+plt.ylabel('F(s)')
+plt.title('Plot(precomputed laplace transform)')
