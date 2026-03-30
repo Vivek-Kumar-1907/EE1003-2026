@@ -1,0 +1,18 @@
+\frametitle{Python Code - Plotting upper, lower bounds and function }
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+num = 100
+x = np.linspace(0, 75, num = num)
+
+y1 = (x-1)/(x+1)
+y3 = (x+1)/(x-1)
+y2 = (x-np.sin(x))/(x+np.cos(x))
+
+plt.plot(x, y1, label = 'x-1/x+1')
+plt.plot(x, y2, label = 'x-sinx/x+cosx')
+plt.plot(x, y3, label = 'x+1/x-1')
+plt.ylim(-1.5, 3.5)
+plt.legend()
+plt.title('Sandwich rule visualisation')
+\end{lstlisting}

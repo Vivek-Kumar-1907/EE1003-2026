@@ -1,0 +1,82 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} 
+\usepackage{tfrupee} 
+\setlength{\headheight}{1cm}
+\setlength{\headsep}{0mm}   
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}  
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{xparse}
+
+\bibliographystyle{IEEEtran}
+
+\title{1.2.81}
+\author{EE25BTECH11062 - Vivek K Kumar}
+
+\begin{document}
+\maketitle
+
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+
+\numberwithin{equation}{enumi}
+\numberwithin{figure}{enumi} 
+
+\textbf{Question}:\\
+\begin{align}
+    \lim\limits_{x\to\infty} \frac{x-\sin x}{x+\cos x} 
+\end{align}
+equals
+\begin{enumerate}
+    \item $1$
+    \item $-1$
+    \item $\infty$
+    \item $0$
+\end{enumerate}
+\textbf{Solution: }
+The minimum and maximum of the numerator $x-\sin x$ is $x-1$ and $x+1$. The minimum and maximum of the denominator $x+\cos x$ similarly, is $x-1$ and $x+1$. 
+\begin{align}
+    \frac{x-1}{x+1} &< \frac{x-\sin x}{x+\cos x} < \frac{x+1}{x-1} \\
+    \lim\limits_{x\to\infty} \frac{x-1}{x+1} &= \lim\limits_{x\to\infty} \frac{x+1}{x-1} = 1 \text{ (By L'Hospital)}
+\end{align}
+
+So by sandwich rule,
+\begin{align}
+    \lim\limits_{x\to\infty} \frac{x-\sin x}{x+\cos x}  = 1
+\end{align}
+
+\begin{center}
+    \boxed{\textbf{Option A is the answer: Limit is 1}}
+\end{center}
+
+
+\end{document}  
+
