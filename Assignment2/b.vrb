@@ -1,0 +1,51 @@
+\frametitle{Python Code - Plotting cobweb plot}
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+def g_x(a, x):
+  return math.sqrt(a)*(1+((3*a**2)/x**2)) - 3*(a**2)/x
+
+print('Enter a:')
+a = float(input())
+x0 = 1.0
+n_iterations = 10
+true_limit = math.sqrt(a)
+
+x_vals = np.linspace(0.1, 2, 500)
+y_vals = g_x(a, x_vals)
+
+plt.plot(x_vals, x_vals, '--', color='gray', label='y = x (Diagonal)')
+plt.plot(x_vals, y_vals, color='blue', linewidth=2, label='y = g(x)')
+
+cobweb_x = [x0]
+cobweb_y = [0]
+
+current_x = x0
+
+for i in range(n_iterations):
+    next_x = g_x(a, current_x)
+
+    cobweb_x.append(current_x)
+    cobweb_y.append(next_x)
+
+    cobweb_x.append(next_x)
+    cobweb_y.append(next_x)
+
+    current_x = next_x
+
+plt.plot(cobweb_x, cobweb_y, color='red', alpha=0.7, linewidth=1.5, label='Cobweb Path')
+
+plt.plot(x0, 0, 'go', markersize=8, label=f'Start (x0={x0})')
+plt.plot(true_limit, true_limit, 'ko', markersize=8, label=f'True Root (L={true_limit:.3f})')
+
+plt.xlim(0.1, 2)
+plt.ylim(0.1, 2)
+plt.xlabel('x_n')
+plt.ylabel('x_{n+1}')
+plt.title(f'Cobweb Plot for a = {a}')
+plt.grid(True)
+plt.legend()
+plt.show()
+    \end{lstlisting}
