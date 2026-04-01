@@ -1,0 +1,113 @@
+\let\negmedspace\undefined
+\let\negthickspace\undefined
+\documentclass[journal]{IEEEtran}
+\usepackage[a5paper, margin=10mm, onecolumn]{geometry}
+\usepackage{lmodern} 
+\usepackage{tfrupee} 
+\setlength{\headheight}{1cm}
+\setlength{\headsep}{0mm}   
+
+\usepackage{gvv-book}
+\usepackage{gvv}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{txfonts}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{gensymb}
+\usepackage{comment}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} 
+\usepackage{listings}  
+\def\inputGnumericTable{}                                 
+\usepackage[latin1]{inputenc}                                
+\usepackage{color}                                            
+\usepackage{array}                                            
+\usepackage{longtable}                                       
+\usepackage{calc}                                             
+\usepackage{multirow}                                         
+\usepackage{hhline}                                           
+\usepackage{ifthen}                                           
+\usepackage{lscape}
+\usepackage{xparse}
+
+\bibliographystyle{IEEEtran}
+
+\title{1.2.40}
+\author{EE25BTECH11062 - Vivek K Kumar}
+
+\begin{document}
+\maketitle
+
+\renewcommand{\thefigure}{\theenumi}
+\renewcommand{\thetable}{\theenumi}
+
+\numberwithin{equation}{enumi}
+\numberwithin{figure}{enumi} 
+
+\textbf{Question}:\\
+\begin{align}
+    \lim\limits_{x\to0} \frac{e^x-\brak{1+x+\frac{x^2}{2}}}{x^3} = 
+\end{align}
+\begin{enumerate}
+    \item $0$
+    \item $1/6$
+    \item $1/3$
+    \item $1$
+\end{enumerate}
+\textbf{Solution: }
+
+\textbf{Method 1 - Taylor series}\\
+Taylor series expansion of $e^x$
+\begin{align}
+    e^x = \sum\limits_{n=0}^\infty \frac{x^n}{n!} = 1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24} \dots
+\end{align}
+
+Then the limit becomes
+\begin{align}
+    &\lim\limits_{x\to0}\frac{\brak{1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24} \dots} - \brak{1+x+\frac{x^2}{2}}}{x^3} \\
+    &= \lim\limits_{x\to0} \frac{\frac{x^3}{6} + \frac{x^4}{24} + \dots}{x^3} \\
+    &= \lim\limits_{x\to0} \frac{1}{6} + \frac{x}{24} + \frac{x^2}{120}\dots \\
+   & = \boxed{\frac{1}{6}}
+\end{align}
+\begin{center}
+$\boxed{\mathbf{ \lim\limits_{x\to0} \frac{e^x-\brak{1+x+\frac{x^2}{2}}}{x^3} = \frac{1}{6}}}$
+\end{center}
+
+\textbf{Method 2 - L'Hospital Rule}
+Since numerator and denominator tends to 0, we can apply L'Hospital rule. 
+
+\begin{align}
+    &\lim\limits_{x\to0} \frac{e^x-\brak{1+x+\frac{x^2}{2}}}{x^3} \\
+    &= \lim\limits_{x\to0}\frac{\frac{d}{dx}\brak{e^x - \brak{1+x+\frac{x^2}{2}}}}{\frac{d}{dx}(x^3)} \\
+    &= \lim\limits_{x\to0} \frac{e^x - \brak{1+x}}{3x^2}    
+\end{align}
+
+Applying L'hospital again 
+
+\begin{align}
+    & \lim\limits_{x\to0} \frac{e^x - \brak{1+x}}{3x^2} \\
+    &= \lim\limits_{x\to0}\frac{\frac{d}{dx}\brak{e^x - \brak{1+x}}}{\frac{d}{dx}(3x^2)} \\
+    &= \lim\limits_{x\to0} \frac{e^x - 1}{6x} \\
+\end{align}
+
+Applying L'hospital one last time
+\begin{align}
+    & \lim\limits_{x\to0} \frac{e^x - 1}{6x} \\
+    &= \lim\limits_{x\to0}\frac{\frac{d}{dx}\brak{e^x - 1}}{\frac{d}{dx}(6x)} \\
+    &= \lim\limits_{x\to0} \frac{e^x}{6} \\
+    & = \frac{e^0}{6} = \boxed{\frac{1}{6}}
+\end{align}
+
+\begin{center}
+$\boxed{\textbf{Option 2 is the correct answer}}$
+\end{center}
+
+
+\end{document}  
+

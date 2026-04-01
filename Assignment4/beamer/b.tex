@@ -1,0 +1,214 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{txfonts}
+\usepackage{tkz-euclide}
+\usepackage{listings}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{gvv}
+\usepackage{lmodern}
+\usepackage{circuitikz}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{subcaption}
+\setbeamertemplate{page number in head/foot}[totalframenumber]
+
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,xparse,skins}
+
+
+
+\definecolor{bg}{gray}{0.95}
+\DeclareTCBListing{mintedbox}{O{}m!O{}}{%
+  breakable=true,
+  listing engine=minted,
+  listing only,
+  minted language=#2,
+  minted style=default,
+  minted options={%
+    linenos,
+    gobble=0,
+    breaklines=true,
+    breakafter=,,
+    fontsize=\small,
+    numbersep=8pt,
+    #1},
+  boxsep=0pt,
+  left skip=0pt,
+  right skip=0pt,
+  left=25pt,
+  right=0pt,
+  top=3pt,
+  bottom=3pt,
+  arc=5pt,
+  leftrule=0pt,
+  rightrule=0pt,
+  bottomrule=2pt,
+  toprule=2pt,
+  colback=bg,
+  colframe=orange!70,
+  enhanced,
+  overlay={%
+    \begin{tcbclipinterior}
+    \fill[orange!20!white] (frame.south west) rectangle ([xshift=20pt]frame.north west);
+    \end{tcbclipinterior}},
+  #3,
+}
+\lstset{
+    language=C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{orange},
+    commentstyle=\color{green!60!black},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    showstringspaces=false
+}
+
+\title 
+{1.2.40}
+\date{\today}
+
+
+\author 
+{Vivek K Kumar - EE25BTECH11062}
+
+
+
+\begin{document}
+
+
+\frame{\titlepage}
+
+\begin{frame}{Question}
+\textbf{Question}:\\
+\begin{align}
+    \lim\limits_{x\to0} \frac{e^x-\brak{1+x+\frac{x^2}{2}}}{x^3} = 
+\end{align}
+\begin{enumerate}
+    \item $0$
+    \item $1/6$
+    \item $1/3$
+    \item $1$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile, allowframebreaks]{Solution}
+\textbf{Method 1 - Taylor series}\\
+Taylor series expansion of $e^x$
+\begin{align}
+    e^x = \sum\limits_{n=0}^\infty \frac{x^n}{n!} = 1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24} \dots
+\end{align}
+
+Then the limit becomes
+\begin{align}
+    &\lim\limits_{x\to0}\frac{\brak{1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24} \dots} - \brak{1+x+\frac{x^2}{2}}}{x^3} \\
+    &= \lim\limits_{x\to0} \frac{\frac{x^3}{6} + \frac{x^4}{24} + \dots}{x^3} \\
+    &= \lim\limits_{x\to0} \frac{1}{6} + \frac{x}{24} + \frac{x^2}{120}\dots \\
+   & = \boxed{\frac{1}{6}}
+\end{align}
+\begin{center}
+$\boxed{\mathbf{ \lim\limits_{x\to0} \frac{e^x-\brak{1+x+\frac{x^2}{2}}}{x^3} = \frac{1}{6}}}$
+\end{center}
+
+\textbf{Method 2 - L'Hospital Rule}
+Since numerator and denominator tends to 0, we can apply L'Hospital rule. 
+
+\begin{align}
+    &\lim\limits_{x\to0} \frac{e^x-\brak{1+x+\frac{x^2}{2}}}{x^3} \\
+    &= \lim\limits_{x\to0}\frac{\frac{d}{dx}\brak{e^x - \brak{1+x+\frac{x^2}{2}}}}{\frac{d}{dx}(x^3)} \\
+    &= \lim\limits_{x\to0} \frac{e^x - \brak{1+x}}{3x^2}    
+\end{align}
+
+Applying L'hospital again 
+
+\begin{align}
+    & \lim\limits_{x\to0} \frac{e^x - \brak{1+x}}{3x^2} \\
+    &= \lim\limits_{x\to0}\frac{\frac{d}{dx}\brak{e^x - \brak{1+x}}}{\frac{d}{dx}(3x^2)} \\
+    &= \lim\limits_{x\to0} \frac{e^x - 1}{6x} \\
+\end{align}
+
+Applying L'hospital one last time
+\begin{align}
+    & \lim\limits_{x\to0} \frac{e^x - 1}{6x} \\
+    &= \lim\limits_{x\to0}\frac{\frac{d}{dx}\brak{e^x - 1}}{\frac{d}{dx}(6x)} \\
+    &= \lim\limits_{x\to0} \frac{e^x}{6} \\
+    & = \frac{e^0}{6} = \boxed{\frac{1}{6}}
+\end{align}
+
+\begin{center}
+$\boxed{\textbf{Option 2 is the correct answer}}$
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Python Code - Plotting function }
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+num = 100
+x = np.linspace(-0.5, 0.5, num = num)
+y1 = ( np.exp(x) - 1 - x - ((x**2)/2) ) / (x**3)
+y2 = 1/6*np.ones(num)
+x2 = np.zeros(num)
+y3= np.linspace(0.15, 0.20, num=num)
+plt.plot(x, y1, label = 'e^x - (1+x+x^2/2) / x^3')
+plt.plot(x, y2, label = 'lim x->0 = 1/6 (theoretical)', linestyle = 'dotted')
+plt.plot(x2, y3, linestyle='dotted')
+plt.legend()
+plt.title('Limit visualisation')
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Plot}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{beamer/figs/lim.png}
+    \caption{Plot of function}
+    \label{fig:sp}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Python Code - Visualising L'hospital rule }
+\begin{lstlisting}[language=Python]
+import numpy as np
+import matplotlib.pyplot as plt
+
+num = 100
+x = np.linspace(-0.5, 0.5, num = num)
+
+y1 = ( np.exp(x) - 1 - x - ((x**2)/2) ) / (x**3)
+y2 = 1/6*np.ones(num)
+x2 = np.zeros(num)
+y3= np.linspace(0.15, 0.20, num=num)
+y4 = ( np.exp(x) - 1 - x ) / (3*x*x)
+y5 = ( np.exp(x) - 1 ) / (6*x)
+y6 = y2
+
+plt.plot(x, y1, label = 'e^x - (1+x+x^2/2) / x^3')
+plt.plot(x, y2, label = 'lim x->0 = 1/6 (theoretical)', linestyle = 'dotted')
+plt.plot(x2, y3, linestyle='dotted')
+plt.plot(x, y4, label = 'e^x - (1+x) / 3x^2')
+plt.plot(x, y5, label = 'e^x - 1 / 6x')
+plt.plot(x, y6, label = '1/6')
+plt.legend()
+plt.title('Lhospital visualisation')
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Plot -2}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{beamer/figs/lhospital.png}
+    \caption{L'hospital visualisation}
+    \label{fig:spl}
+\end{figure}
+\end{frame}
+
+\end{document}
